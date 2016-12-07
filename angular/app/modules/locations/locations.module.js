@@ -11,6 +11,9 @@
     {
         // State
         $stateProvider.state('app.locations', {
+            data:{
+                auth:true
+            },
             url      : '/locations',
             views    : {
                 'content@app': {
