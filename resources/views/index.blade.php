@@ -17,7 +17,8 @@
     <style><?php require(public_path("css/critical.css")) ?></style>
 
 </head>
-<body>
+<body md-theme="@{{vm.themes.active.name}}" md-theme-watch ng-controller="IndexController as vm"
+          class="@{{state.current.bodyClass || ''}}">
 
     <app-shell>
         <div id="app-shell-header">

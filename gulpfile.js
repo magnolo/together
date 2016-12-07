@@ -4,7 +4,7 @@ const elixir = require('laravel-elixir');
 
 require('laravel-elixir-eslint');
 
-require('./tasks/swPrecache.task.js');
+//require('./tasks/swPrecache.task.js');
 require('./tasks/bower.task.js');
 
 // setting assets paths
@@ -46,6 +46,7 @@ elixir.config.js.folder = 'angular';
 
 elixir(mix => {
     mix.bower()
+      .copy('angular/app/**/*.json', 'public/json/app/')
        .copy('angular/app/**/*.html', 'public/views/app/')
        .copy('angular/dialogs/**/*.html', 'public/views/dialogs/')
        .webpack('index.main.js', 'public/js/app.js')
@@ -55,7 +56,7 @@ elixir(mix => {
        .eslint('angular/**/*.js')
        .combine(scripts, 'public/js/final.js')
        .version(assets)
-       .swPrecache();
+       //.swPrecache();
 
        //enable front-end tests by adding the below task
        // .karma({jsDir: karmaJsDir});

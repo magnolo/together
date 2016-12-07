@@ -1,3 +1,5 @@
+import './app/modules/index.main';
+
 import './index.modules';
 
 import './index.run';
@@ -11,3 +13,5 @@ import './index.components';
 import './index.directives';
 
 import './index.services';
+
+import './index.controllers';

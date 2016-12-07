@@ -2,6 +2,18 @@
 
 return [
 
+    'token_secret' => 'weShouldAllActTogether',
+	'facebook_secret' => 'c3c3e59e780382ff3760f386332501e9',
+	'foursquare_secret' => '',
+	'google_secret' => '',
+	'github_secret' => '',
+	'instagram_secret' => '',
+	'linkedin_secret' => '',
+	'live_secret' => '',
+	'yahoo_secret' => '',
+	'twitter_key' => '',
+	'twitter_secret' => '',
+
     /*
     |--------------------------------------------------------------------------
     | Application Name
@@ -12,7 +24,7 @@ return [
     | any other location as required by the application or its packages.
     */
 
-    'name' => 'My Application',
+    'name' => 'Together Calendar',
 
     /*
     |--------------------------------------------------------------------------

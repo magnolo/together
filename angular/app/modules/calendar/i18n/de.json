@@ -1,0 +1,34 @@
+{
+    "CALENDAR": {
+        "CALENDAR": "Kalender",
+        "SEARCH": "Suche",
+        "TODAY": "Heute",
+        "DAY": "Tag",
+        "WEEK": "Woche",
+        "MONTH": "Monat",
+        "PREVIOUS": "Zurück",
+        "NEXT": "Vor",
+        "ADD_EVENT": "Neue Veranstaltung",
+        "EDIT_EVENT": "Veranstaltung bearbeiten",
+        "CLOSE_DIALOG": "Fenster schließen",
+        "TITLE": "Titel",
+        "ALL_DAY": "Ganztags",
+        "START_DATE": "Start Datum",
+        "START_TIME": "Start Zeit",
+        "END_DATE": "End Datum",
+        "END_TIME": "End Zeit",
+        "REPEAT": "Wiederholen",
+        "LOCATION": "Ort",
+        "NOTIFICATIONS": "Benachrichtigung",
+        "ADD_NOTIFICATION": "+ weitere Benachrichtigung",
+        "NOTES": "Notiz",
+        "SAVE": "SPEICHERN",
+        "DELETE": "Löschen",
+        "30_MIN_BEFORE": "30 Minuten früher",
+        "15_MIN_BEFORE": "15 Mintuen früher",
+        "30_MIN_LATER": "30 Minuten später",
+        "ERRORS": {
+            "TITLE_REQUIRED": "Titel ist Pflichtfeld"
+        }
+    }
+}

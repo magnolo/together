@@ -1,0 +1,14 @@
+{
+    "TOOLBAR": {
+        "TOGGLE_NAVIGATION": "Navigation umschalten",
+        "TOGGLE_NAVIGATION_FOLD": "Toggle navigation fold",
+        "TOGGLE_NAVIGATION_MODE": "Toggle navigation mode",
+        "SEARCH": "Suchen",
+        "USER_SETTINGS": "Benutzer Einstellungen",
+        "TOGGLE_QUICK_PANEL": "Schnellfenster umschalten",
+        "GERMAN": "Deutsch",
+        "ENGLISH": "Englisch",
+        "SPANISH": "Spanisch",
+        "TURKISH": "Türkisch"
+    }
+}

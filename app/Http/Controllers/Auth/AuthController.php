@@ -4,9 +4,12 @@ namespace App\Http\Controllers\Auth;
 
 use Auth;
 use JWTAuth;
-use App\User;
+use App\Models\User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use GuzzleHttp;
+use Config;
+
 
 class AuthController extends Controller
 {
@@ -50,5 +53,74 @@ class AuthController extends Controller
         $token = JWTAuth::fromUser($user);
 
         return response()->success(compact('user', 'token'));
+    }
+    /**
+     * Login with Facebook.
+     */
+    public function facebook(Request $request)
+    {
+        $client = new GuzzleHttp\Client();
+        $params = [
+            'code' => $request->input('code'),
+            'client_id' => $request->input('clientId'),
+            'redirect_uri' => $request->input('redirectUri'),
+            'client_secret' => Config::get('app.facebook_secret')
+        ];
+        // Step 1. Exchange authorization code for access token.
+        $accessTokenResponse = $client->request('GET', 'https://graph.facebook.com/v2.5/oauth/access_token', [
+            'query' => $params
+        ]);
+        $accessToken = json_decode($accessTokenResponse->getBody(), true);
+        // Step 2. Retrieve profile information about the current user.
+        $fields = 'id,email,first_name,last_name,link,name';
+        $profileResponse = $client->request('GET', 'https://graph.facebook.com/v2.5/me', [
+            'query' => [
+                'access_token' => $accessToken['access_token'],
+                'fields' => $fields
+            ]
+        ]);
+        $profile = json_decode($profileResponse->getBody(), true);
+        // Step 3a. If user is already signed in then link accounts.
+        if ($request->header('Authorization'))
+        {
+            $user = User::where('facebook', '=', $profile['id']);
+            if ($user->first())
+            {
+                return response()->json(['message' => 'There is already a Facebook account that belongs to you'], 409);
+            }
+            $token = explode(' ', $request->header('Authorization'))[1];
+            //$payload = (array) JWT::decode($token, Config::get('app.token_secret'), array('HS256'));
+            //$user = User::find($payload['sub']);
+           // $user = JWTAuth::parseToken()->authenticate();
+            $user = new User; 
+            $user->name = $profile['name'];
+            $user->facebook = $profile['id'];
+            $user->email = $profile['email'];
+            $user->display_name = $profile['name'];
+            $user->save();
+
+            $token = JWTAuth::fromUser($user);
+
+        return response()->success(compact('user', 'token'));
+        }
+        // Step 3b. Create a new user account or return an existing one.
+        else
+        {
+            $user = User::where('facebook', '=', $profile['id']);
+            if ($user->first())
+            {
+                $user = $user->first();
+                $token = JWTAuth::fromUser($user);
+                return response()->success(compact('user', 'token'));
+            }
+            $user = new User;
+            $user->facebook = $profile['id'];
+            $user->email = $profile['email'];
+            $user->display_name = $profile['name'];
+            $user->save();
+
+            $token = JWTAuth::fromUser($user);
+            return response()->success(compact('user', 'token'));
+        }
     }
 }

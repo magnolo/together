@@ -15,6 +15,7 @@
     "gulp-cssnano": "^2.1.2",
     "gulp-filter": "^4.0.0",
     "jquery": "^3.1.0",
+    "json-loader": "^0.5.4",
     "laravel-elixir": "^6.0.0-9",
     "laravel-elixir-eslint": "^3.0.0",
     "laravel-elixir-webpack-official": "^1.0.2",
