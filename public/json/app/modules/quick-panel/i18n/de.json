@@ -1,0 +1,23 @@
+{
+    "QUICKPANEL": {
+        "TODAY": "HEUTE",
+        "CHAT": "CHAT",
+        "ACTIVITY": "AKTIVITÄTEN",
+        "FRIENDS": "Freunde",
+        "APP_SERVERS": "Application Servers",
+        "USER_STATS": "Benutzer Stats",
+        "EVENTS": "Events",
+        "NOTES": "Notizen",
+        "QUICK_SETTINGS": "Schnellzugriff",
+        "NOTIFICATIONS": "Benachrichtigungen",
+        "CLOUD_SYNC": "Cloud Sync",
+        "RETRO_THRUSTERS": "Retro Thrusters",
+        "RECENT": "Kürzlich",
+        "START_NEW_CHAT": "Neuen Chat starten",
+        "BACK": "Zurück",
+        "CALL": "Anrufen",
+        "MORE": "Mehr",
+        "SEND_MESSAGE": "Nachricht senden",
+        "REPLY_PLACEHOLDER": "Schreibe und drück Enter zum senden"
+    }
+}

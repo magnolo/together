@@ -46,7 +46,7 @@ elixir.config.js.folder = 'angular';
 
 elixir(mix => {
     mix.bower()
-      .copy('angular/app/**/*.json', 'public/json/app/')
+        .copy('angular/app/**/*.json', 'public/json/app/')
        .copy('angular/app/**/*.html', 'public/views/app/')
        .copy('angular/dialogs/**/*.html', 'public/views/dialogs/')
        .webpack('index.main.js', 'public/js/app.js')

@@ -1,6 +1,6 @@
 angular.module('app', [
   'fuse',
-  'app.core',
+ 
     'app.run',
 	'app.filters',
 	'app.services',
@@ -20,5 +20,5 @@ angular.module('app.directives', []);
 angular.module('app.controllers', []);
 angular.module('app.components', [
 	'ui.router', 'ngMaterial', 'angular-loading-bar',
-	'restangular', 'ngStorage', 'satellizer'
+	'restangular', 'ngStorage', 'satellizer', 'tmh.dynamicLocale'
 ]);

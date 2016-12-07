@@ -1179,7 +1179,7 @@
                 root: '@'
             },
             controller : 'MsNavigationController as vm',
-            templateUrl: 'app/core/directives/ms-navigation/templates/horizontal.html',
+            templateUrl: 'views/app/modules/core/directives/ms-navigation/templates/horizontal.html',
             transclude : true,
             compile    : function (tElement)
             {

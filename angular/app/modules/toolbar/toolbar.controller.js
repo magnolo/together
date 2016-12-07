@@ -1,84 +1,89 @@
 /** @ngInject */
-function ToolbarController($rootScope, $q, $state, $timeout, $mdSidenav, $translate, $mdToast, msNavigationService) {
-    var vm = this;
+class ToolbarController {
 
-    // Data
-    $rootScope.global = {
-        search: ''
-    };
+    constructor($rootScope, $q, $state, $timeout, $mdSidenav, $translate, $mdToast,UserService,msNavigationService) {
 
-    vm.bodyEl = angular.element(document).find('body');
-    vm.userStatusOptions = [{
-        'title': 'Online',
-        'icon': 'icon-checkbox-marked-circle',
-        'color': '#4CAF50'
-    }, {
-        'title': 'Away',
-        'icon': 'icon-clock',
-        'color': '#FFC107'
-    }, {
-        'title': 'Do not Disturb',
-        'icon': 'icon-minus-circle',
-        'color': '#F44336'
-    }, {
-        'title': 'Invisible',
-        'icon': 'icon-checkbox-blank-circle-outline',
-        'color': '#BDBDBD'
-    }, {
-        'title': 'Offline',
-        'icon': 'icon-checkbox-blank-circle-outline',
-        'color': '#616161'
-    }];
-    vm.languages = {
-        de: {
-            'title': 'Deutsch',
-            'translation': 'TOOLBAR.GERMAN',
-            'code': 'de',
-            'flag': 'de'
-        },
-        en: {
-            'title': 'English',
-            'translation': 'TOOLBAR.ENGLISH',
-            'code': 'en',
-            'flag': 'us'
-        },
-        es: {
-            'title': 'Spanish',
-            'translation': 'TOOLBAR.SPANISH',
-            'code': 'es',
-            'flag': 'es'
-        },
-        tr: {
-            'title': 'Turkish',
-            'translation': 'TOOLBAR.TURKISH',
-            'code': 'tr',
-            'flag': 'tr'
-        }
-    };
 
-    // Methods
-    vm.toggleSidenav = toggleSidenav;
-    vm.logout = logout;
-    vm.changeLanguage = changeLanguage;
-    vm.setUserStatus = setUserStatus;
-    vm.toggleHorizontalMobileMenu = toggleHorizontalMobileMenu;
-    vm.toggleMsNavigationFolded = toggleMsNavigationFolded;
-    vm.search = search;
-    vm.searchResultClick = searchResultClick;
+        // Data
+        $rootScope.global = {
+            search: ''
+        };
+        this.UserService = UserService;
+        
+        this.$state = $state;
+        this.$q = $q;
+        this.$timeout = $timeout;
+        this.$mdToast = $mdToast;
+        this.msNavigationService = msNavigationService;
+        this.$translate = $translate;
+        this.$mdSidenav = $mdSidenav;
 
-    //////////
+        this.bodyEl = angular.element(document).find('body');
+        this.userStatusOptions = [{
+            'title': 'Online',
+            'icon': 'icon-checkbox-marked-circle',
+            'color': '#4CAF50'
+        }, {
+            'title': 'Away',
+            'icon': 'icon-clock',
+            'color': '#FFC107'
+        }, {
+            'title': 'Do not Disturb',
+            'icon': 'icon-minus-circle',
+            'color': '#F44336'
+        }, {
+            'title': 'Invisible',
+            'icon': 'icon-checkbox-blank-circle-outline',
+            'color': '#BDBDBD'
+        }, {
+            'title': 'Offline',
+            'icon': 'icon-checkbox-blank-circle-outline',
+            'color': '#616161'
+        }];
+        this.languages = {
+            de: {
+                'title': 'Deutsch',
+                'translation': 'TOOLBAR.GERMAN',
+                'code': 'de',
+                'flag': 'de'
+            },
+            en: {
+                'title': 'English',
+                'translation': 'TOOLBAR.ENGLISH',
+                'code': 'en',
+                'flag': 'us'
+            },
+            es: {
+                'title': 'Spanish',
+                'translation': 'TOOLBAR.SPANISH',
+                'code': 'es',
+                'flag': 'es'
+            },
+            tr: {
+                'title': 'Turkish',
+                'translation': 'TOOLBAR.TURKISH',
+                'code': 'tr',
+                'flag': 'tr'
+            }
+        };
 
-    init();
+        // Methods
 
+
+        //////////
+
+        
+    }
     /**
      * Initialize
      */
-    function init() {
+    $onInit() {
         // Select the first status as a default
-        vm.userStatus = vm.userStatusOptions[0];
+        this.userStatus = this.userStatusOptions[0];
 
+        this.user = this.UserService.getCurrentUser();
         // Get the selected language directly from angular-translate module setting
-        vm.selectedLanguage = vm.languages[$translate.preferredLanguage()];
+        this.selectedLanguage = this.languages[this.$translate.preferredLanguage()];
     }
 
 
@@ -87,30 +92,31 @@ function ToolbarController($rootScope, $q, $state, $timeout, $mdSidenav, $transl
      *
      * @param sidenavId
      */
-    function toggleSidenav(sidenavId) {
-        $mdSidenav(sidenavId).toggle();
+    toggleSidenav(sidenavId) {
+        this.$mdSidenav(sidenavId).toggle();
     }
 
     /**
      * Sets User Status
      * @param status
      */
-    function setUserStatus(status) {
-        vm.userStatus = status;
+    setUserStatus(status) {
+        this.userStatus = status;
     }
 
     /**
      * Logout Function
      */
-    function logout() {
-        // Do logout here..
+    logout() {
+        console.log('logout');
+        this.UserService.logout();
     }
 
     /**
      * Change Language
      */
-    function changeLanguage(lang) {
-        vm.selectedLanguage = lang;
+    changeLanguage(lang) {
+        this.selectedLanguage = lang;
 
         /**
          * Show temporary message if user selects a language other than English
@@ -127,7 +133,7 @@ function ToolbarController($rootScope, $q, $state, $timeout, $mdSidenav, $transl
         if (lang.code !== 'en' && lang.code !== 'de') {
             var message = 'Fuse supports translations through angular-translate module, but currently we do not have any translations other than English language. If you want to help us, send us a message through ThemeForest profile page.';
 
-            $mdToast.show({
+            this.$mdToast.show({
                 template: '<md-toast id="language-message" layout="column" layout-align="center start"><div class="md-toast-content">' + message + '</div></md-toast>',
                 hideDelay: 7000,
                 position: 'top right',
@@ -138,21 +144,21 @@ function ToolbarController($rootScope, $q, $state, $timeout, $mdSidenav, $transl
         }
 
         // Change the language
-        $translate.use(lang.code);
+        this.$translate.use(lang.code);
     }
 
     /**
      * Toggle horizontal mobile menu
      */
-    function toggleHorizontalMobileMenu() {
-        vm.bodyEl.toggleClass('ms-navigation-horizontal-mobile-menu-active');
+    toggleHorizontalMobileMenu() {
+        this.bodyEl.toggleClass('ms-navigation-horizontal-mobile-menu-active');
     }
 
     /**
      * Toggle msNavigation folded
      */
-    function toggleMsNavigationFolded() {
-        msNavigationService.toggleFolded();
+    toggleMsNavigationFolded() {
+        this.msNavigationService.toggleFolded();
     }
 
     /**
@@ -161,10 +167,10 @@ function ToolbarController($rootScope, $q, $state, $timeout, $mdSidenav, $transl
      * @param query
      * @returns {Promise}
      */
-    function search(query) {
+    search(query) {
         var navigation = [],
-            flatNavigation = msNavigationService.getFlatNavigation(),
-            deferred = $q.defer();
+            flatNavigation = this.msNavigationService.getFlatNavigation(),
+            deferred = this.$q.defer();
 
         // Iterate through the navigation array and
         // make sure it doesn't have any groups or
@@ -180,7 +186,7 @@ function ToolbarController($rootScope, $q, $state, $timeout, $mdSidenav, $transl
         // list. Not exactly a good thing to do but it's
         // for demo purposes.
         if (query) {
-            navigation = navigation.filter(function(item) {
+            navigation = navigation.filter(function (item) {
                 if (angular.lowercase(item.title).search(angular.lowercase(query)) > -1) {
                     return true;
                 }
@@ -188,11 +194,11 @@ function ToolbarController($rootScope, $q, $state, $timeout, $mdSidenav, $transl
         }
 
         // Fake service delay
-        $timeout(function() {
-            deferred.resolve(navigation);
+        this.$timeout(function () {
+            this.deferred.resolve(navigation);
         }, 1000);
 
-        return deferred.promise;
+        return this.deferred.promise;
     }
 
     /**
@@ -200,20 +206,19 @@ function ToolbarController($rootScope, $q, $state, $timeout, $mdSidenav, $transl
      *
      * @param item
      */
-    function searchResultClick(item) {
+    searchResultClick(item) {
         // If item has a link
         if (item.uisref) {
             // If there are state params,
             // use them...
             if (item.stateParams) {
-                $state.go(item.state, item.stateParams);
+                this.$state.go(item.state, item.stateParams);
             } else {
-                $state.go(item.state);
+                this.$state.go(item.state);
             }
         }
     }
 }
 
-export {
-    ToolbarController
+export {ToolbarController
 }

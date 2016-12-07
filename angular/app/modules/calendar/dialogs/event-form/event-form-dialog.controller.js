@@ -27,11 +27,11 @@
             switch ( vm.dialogData.type )
             {
                 case 'add' :
-                    vm.dialogTitle = 'Add Event';
+                    vm.dialogTitle = 'Neue Veranstaltung';
                     break;
 
                 case 'edit' :
-                    vm.dialogTitle = 'Add Event';
+                    vm.dialogTitle = 'Veranstaltung ändern';
                     break;
 
                 default:

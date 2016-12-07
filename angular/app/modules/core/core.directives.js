@@ -1,5 +1,13 @@
 import './directives/ms-scroll/ms-scroll.directive';
-
+import './directives/ms-datepicker-fix/ms-datepicker-fix.directive';
+import './directives/ms-info-bar/ms-info-bar.directive';
+import './directives/ms-masonry/ms-masonry.directive';
+import './directives/ms-nav/ms-nav.directive';
+import './directives/ms-responsive-table/ms-responsive-table.directive';
+import './directives/ms-search-bar/ms-search-bar.directive';
+import './directives/ms-shortcuts/ms-shortcuts.directive';
+import './directives/ms-sidenav-helper/ms-sidenav-helper.directive';
+import './directives/ms-timeline/ms-timeline';
+import './directives/ms-widget/ms-widget.directive';
 import './theme-options/theme-options.directive';
-
 import './directives/ms-splash-screen/ms-splash-screen.directive';

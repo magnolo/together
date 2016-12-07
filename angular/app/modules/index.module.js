@@ -24,6 +24,9 @@
             // // Apps
             // 'app.dashboards',
            'app.calendar',
+           'app.locations',
+           'app.login',
+           'app.register'
             // 'app.e-commerce',
             // 'app.mail',
             // 'app.chat',

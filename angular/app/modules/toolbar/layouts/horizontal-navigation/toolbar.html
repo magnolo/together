@@ -28,13 +28,14 @@
                            translate translate-attr-aria-label="TOOLBAR.USER_SETTINGS">
                     <div layout="row" layout-align="space-between center">
                         <div class="avatar-wrapper">
-                            <img md-menu-align-target class="avatar" src="assets/images/avatars/profile.jpg">
+                            <img md-menu-align-target class="avatar" ng-if="!vm.user.image" src="assets/images/avatars/profile.jpg">
+                            <img md-menu-align-target class="avatar" ng-if="vm.user.image" ng-src="{{ vm.user.image.url }}">
                             <md-icon md-font-icon ng-class="vm.userStatus.icon"
                                      ng-style="{'color': vm.userStatus.color }"
                                      class="icon status s16">
                             </md-icon>
                         </div>
-                        <span class="username" hide-sm>John Doe</span>
+                        <span class="username" hide-sm>{{ vm.user.display_name }}</span>
                         <md-icon md-font-icon="icon-chevron-down"
                                  class="icon s16" hide-sm></md-icon>
                     </div>
@@ -43,12 +44,12 @@
                 <md-menu-content width="3">
                     <md-menu-item class="md-indent" ui-sref="app.pages_profile">
                         <md-icon md-font-icon="icon-account" class="icon"></md-icon>
-                        <md-button>My Profile</md-button>
+                        <md-button>Mein Profil</md-button>
                     </md-menu-item>
 
                     <md-menu-item class="md-indent" ui-sref="app.mail">
                         <md-icon md-font-icon="icon-email" class="icon"></md-icon>
-                        <md-button>Inbox</md-button>
+                        <md-button>Posteingang</md-button>
                     </md-menu-item>
 
                     <md-menu-item class="md-indent">
@@ -76,7 +77,7 @@
 
                     <md-menu-item class="md-indent">
                         <md-icon md-font-icon="icon-logout" class="icon"></md-icon>
-                        <md-button ng-click="vm.logout()">Logout</md-button>
+                        <md-button ng-click="vm.logout()">Abmelden</md-button>
                     </md-menu-item>
                 </md-menu-content>
             </md-menu>
@@ -84,7 +85,7 @@
 
         <ms-search-bar on-search="vm.search(query)" on-result-click="vm.searchResultClick(item)"
                        debounce="300"></ms-search-bar>
-
+<!--
         <md-menu id="language-menu" md-offset="0 72" md-position-mode="target-right target">
             <md-button class="language-button" ng-click="$mdOpenMenu()"
                        aria-label="Language" md-menu-origin md-menu-align-target>
@@ -105,7 +106,7 @@
                     </md-button>
                 </md-menu-item>
             </md-menu-content>
-        </md-menu>
+        </md-menu>-->
 
         <md-button id="quick-panel-toggle" class="md-icon-button" ng-click="vm.toggleSidenav('quick-panel')"
                    aria-label="Toggle quick panel" translate translate-attr-aria-label="TOOLBAR.TOGGLE_QUICK_PANEL">

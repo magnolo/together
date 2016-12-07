@@ -1,4 +1,4 @@
-export function MainConfig($translateProvider){
+export function MainConfig($translateProvider, tmhDynamicLocaleProvider){
     'ngInject';
 
     //
@@ -8,4 +8,6 @@ export function MainConfig($translateProvider){
         });
         $translateProvider.preferredLanguage('de');
         $translateProvider.useSanitizeValueStrategy('sanitize');
+
+        tmhDynamicLocaleProvider.localeLocationPattern('bower_components/angular-i18n/angular-locale_{{locale}}.js');
 }

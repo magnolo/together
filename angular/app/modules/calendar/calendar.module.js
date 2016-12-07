@@ -14,6 +14,9 @@
     {
         // State
         $stateProvider.state('app.calendar', {
+            data    :{
+                auth:true,
+            },
             url      : '/calendar',
             views    : {
                 'content@app': {

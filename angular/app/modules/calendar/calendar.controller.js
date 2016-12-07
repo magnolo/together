@@ -91,10 +91,13 @@ function CalendarController($mdDialog, $document) {
 
     vm.calendarUiConfig = {
         calendar: {
+            locale:'de',
+            weekNumbers:true,
             editable: true,
             eventLimit: true,
             header: '',
             handleWindowResize: false,
+            firstDay:1,
             aspectRatio: 1,
             dayNames: ['Sonntag', 'Montag', 'Dienstag', 'Mittwoch', 'Donnerstag', 'Freitag', 'Samstag'],
             dayNamesShort: ['So', 'Mo', 'Di', 'Mi', 'Do', 'Fr', 'Sa'],

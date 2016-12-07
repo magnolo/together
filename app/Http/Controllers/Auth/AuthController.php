@@ -85,8 +85,12 @@ class AuthController extends Controller
         {
             $user = User::where('facebook', '=', $profile['id']);
             if ($user->first())
-            {
-                return response()->json(['message' => 'There is already a Facebook account that belongs to you'], 409);
+            {   
+                $user = $user->first();
+                $token = JWTAuth::fromUser($user);
+
+                return response()->success(compact('user', 'token'));
+                // return response()->json(['message' => 'There is already a Facebook account that belongs to you'], 409);
             }
             $token = explode(' ', $request->header('Authorization'))[1];
             //$payload = (array) JWT::decode($token, Config::get('app.token_secret'), array('HS256'));
@@ -101,7 +105,7 @@ class AuthController extends Controller
 
             $token = JWTAuth::fromUser($user);
 
-        return response()->success(compact('user', 'token'));
+            return response()->success(compact('user', 'token'));
         }
         // Step 3b. Create a new user account or return an existing one.
         else
