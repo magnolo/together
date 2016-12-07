@@ -1,0 +1,23 @@
+{
+    "LOGIN_V2": {
+        "INTRO_TITLE": "Come Together APP!",
+        "INTRO_DESCRIPTION": "Hier kommen wir alle zusammen und können unsere Gemeinsamkeiten teilen. Ach immer diese Kommunikationsprobleme. Jezt haben sie ein Ende.",
+        "TITLE": "Melde dich an",
+        "DESCRIPTION": "Kommunikationsprobleme ade!",
+        "EMAIL": "Email",
+        "PASSWORD": "Passwort",
+        "REMEMBER_ME": "Angemeldet bleiben",
+        "FORGOT_PASSWORD": "Passwort vergessen?",
+        "LOG_IN": "ANMELDEN",
+        "OR": "ODER",
+        "WITH_GOOGLE": "Anmelden mit Google",
+        "WITH_FACEBOOK": "Anmelden mit Facebook",
+        "DONT_HAVE_ACCOUNT": "Du hast noch keinen Account?",
+        "CREATE_ACCOUNT": "Account erstellen",
+        "ERRORS": {
+            "EMAIL_REQUIRED": "Ohne Email geht nichts",
+            "EMAIL_MUST_VALID": "Das ist aber keine echte Emailadresse",
+            "PASSWORD_REQUIRED": "Gib mir dein Passwort!"
+        }
+    }
+}

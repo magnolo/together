@@ -1,7 +1,11 @@
+@import '../../../../bower_components/angular-material/angular-material.scss';
+@import '../../modules/core/scss/partials/variables';
+
+
 #login-v2 {
     height: 100%;
     overflow: hidden;
-    background: url('/img/backgrounds/march.jpg') no-repeat;
+    background: url('/assets/images/backgrounds/march.jpg') no-repeat;
     background-size: cover;
 
     #login-v2-intro {
@@ -168,28 +172,29 @@
     }
 }
 
-// // RESPONSIVE
-// @media screen and (max-width: $layout-breakpoint-sm) {
+// RESPONSIVE
+@media screen and (max-width: $layout-breakpoint-sm) {
 
-//     #login-v2 {
+    #login-v2 {
 
-//         #login-v2-form-wrapper {
-//             width: 100%;
-//             min-width: 100%;
-//             max-width: 100%;
+        #login-v2-form-wrapper {
+            width: 100%;
+            min-width: 100%;
+            max-width: 100%;
 
-//             #login-v2-form {
-//                 text-align: center;
-//                 padding: 24px;
+            #login-v2-form {
+                text-align: center;
+                padding: 24px;
 
-//                 .md-button {
+                .md-button {
 
-//                     &.google,
-//                     &.facebook {
-//                         width: 80%;
-//                     }
-//                 }
-//             }
-//         }
-//     }
-// }
+                    &.google,
+                    &.facebook {
+                        width: 80%;
+                    }
+                }
+            }
+        }
+    }
+
+}

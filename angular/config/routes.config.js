@@ -81,6 +81,19 @@ export function RoutesConfig($stateProvider, $urlRouterProvider) {
 										controller : 'QuickPanelController as vm'
                 }
             }
+        })
+        .state('app.pages_auth_login-v2', {
+            url      : '/login',
+            views    : {
+                'main@'                          : {
+                    templateUrl: 'views/app/modules/core/layouts/content-only.html',
+                    controller : 'MainController as vm'
+                },
+                'content@app.pages_auth_login-v2': {
+                    templateUrl: getView('login'),
+                }
+            },
+            bodyClass: 'login-v2'
         });
         // .state('app.landing', {
         //     url: '/',

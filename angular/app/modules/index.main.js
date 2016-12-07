@@ -2,7 +2,7 @@ import './core/core.main';
 
 import './calendar/calendar.main';
 
-import './pages/pages.main';
+// import './pages/pages.main';
 
 import './navigation/navigation.main';
 

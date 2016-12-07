@@ -35,7 +35,7 @@
             // 'app.notes',
 
             // Pages
-            // 'app.pages',
+            //'app.pages',
             //
             // // User Interface
             // 'app.ui',

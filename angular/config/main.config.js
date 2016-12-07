@@ -6,6 +6,6 @@ export function MainConfig($translateProvider){
         $translateProvider.useLoader('$translatePartialLoader', {
             urlTemplate: 'json/{part}/i18n/{lang}.json'
         });
-        $translateProvider.preferredLanguage('en');
+        $translateProvider.preferredLanguage('de');
         $translateProvider.useSanitizeValueStrategy('sanitize');
 }

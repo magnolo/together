@@ -20,12 +20,30 @@
 <body md-theme="@{{vm.themes.active.name}}" md-theme-watch ng-controller="IndexController as vm"
           class="@{{state.current.bodyClass || ''}}">
 
-    <app-shell>
-        <div id="app-shell-header">
-            <img src="img/icons/logo.svg" width="171" height="41">
-        </div>
-        <div id="app-shell-content"></div>
-    </app-shell>
+    
+        <ms-splash-screen id="splash-screen">
+            <div class="center">
+                <div class="logo">
+                    <span>F</span>
+                </div>
+                <!-- Material Design Spinner -->
+                <div class="spinner-wrapper">
+                    <div class="spinner">
+                        <div class="inner">
+                            <div class="gap"></div>
+                            <div class="left">
+                                <div class="half-circle"></div>
+                            </div>
+                            <div class="right">
+                                <div class="half-circle"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- / Material Design Spinner -->
+            </div>
+        </ms-splash-screen>
+  
 
 
     <app-root></app-root>
