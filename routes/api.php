@@ -23,10 +23,13 @@ Route::get('auth/password/verify', 'Auth\PasswordResetController@verify');
 Route::post('auth/password/reset', 'Auth\PasswordResetController@reset');
 
 Route::group(['middleware' => 'auth:api'], function(){
+
   Route::group(['middleware' => 'role:admin|superadmin'], function(){
       Route::get('/users', 'UserController@all');
   });
 
+
+  Route::get('/locations', 'LocationController@all');
   Route::get('/user', function (Request $request) {
       return $request->user();
 

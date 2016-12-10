@@ -6,7 +6,7 @@ class UsersController {
         this.$state = $state;
         this.$mdDialog = $mdDialog;
         this.UserService = UserService;
-        this.users;
+        this.users = [];
         this.$document = $document;
 
         //this.user = User.data;
@@ -17,9 +17,11 @@ class UsersController {
         this.selectedUsers = [];
 
         this.newGroupName = '';
-        this.UserService.all().then((response) => {
-            this.users = response.data.users;
-        })
+        this.UserService.all().then((data) => {
+            this.users = data;
+        });
+        this.toggleInArray = msUtils.toggleInArray;
+        this.exists = msUtils.exists;
 
     }
 
@@ -76,12 +78,12 @@ class UsersController {
      */
     deleteUserConfirm(user, ev) {
         var confirm = this.$mdDialog.confirm()
-            .title('Are you sure want to delete the user?')
-            .htmlContent('<b>' + user.name + ' ' + user.lastName + '</b>' + ' will be deleted.')
-            .ariaLabel('delete user')
+            .title('Bist du wirklich sicher. Benutzer löschen?')
+            .htmlContent('<b>' + user.display_name + '</b>' + ' wird unwiederruflich gelöscht.')
+            .ariaLabel('Benutzer löschen')
             .targetEvent(ev)
             .ok('OK')
-            .cancel('CANCEL');
+            .cancel('ABBRECHEN');
 
         this.$mdDialog.show(confirm).then(() => {
 
@@ -105,12 +107,12 @@ class UsersController {
      */
     deleteSelectedUsers(ev) {
         var confirm = this.$mdDialog.confirm()
-            .title('Are you sure want to delete the selected users?')
-            .htmlContent('<b>' + this.selectedUsers.length + ' selected</b>' + ' will be deleted.')
-            .ariaLabel('delete users')
+            .title('Bist du wirklich sicher. Benutzer löschen?')
+            .htmlContent('<b>' + this.selectedUsers.length + ' ausgewählte</b>' + ' werden gelöscht.')
+            .ariaLabel('Benutzer löschen')
             .targetEvent(ev)
             .ok('OK')
-            .cancel('CANCEL');
+            .cancel('ABBRECHEN');
 
         this.$mdDialog.show(confirm).then(() => {
 
