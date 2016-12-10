@@ -20,7 +20,7 @@
             <div class="title" translate="LOGIN_V2.TITLE">Log in to your account</div>
             <div class="description" translate="LOGIN_V2.DESCRIPTION">Sed mollis velit facilisis facilisis viverra</div>
 
-            <form name="loginForm" novalidate>
+            <form name="loginForm" novalidate ng-submit="vm.login(loginForm.$valid)">
                 <md-input-container class="md-block" md-no-float>
                     <input type="email" name="email" ng-model="vm.form.email" placeholder="Email"
                            translate translate-attr-placeholder="LOGIN_V2.EMAIL"

@@ -8,10 +8,23 @@ class LoginController {
     }
 
     $onInit() {
-
+      if(this.$auth.getPayload()){
+        this.$state.go('app.calendar');
+      }
     }
-    login(credentials) {
-
+    login(isValid) {
+      let user = {
+        email: this.form.email,
+        password: this.form.password
+      };
+      this.UserService.login(user).then((response) => {
+          if (response.errors) {
+              this.loginError(response.errors);
+          }
+          else {
+              this.loginSuccess(response.data.data.user);
+          }
+      });
     }
     socialLogin(provider) {
         this.$auth.authenticate(provider).then((response) => {

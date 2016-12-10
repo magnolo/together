@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Auth;
 use Auth;
 use JWTAuth;
 use App\Models\User;
+use App\Models\Role;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use GuzzleHttp;
@@ -13,6 +14,31 @@ use Config;
 
 class AuthController extends Controller
 {
+
+    public function me(Request $request){
+      try {
+
+       if (! $user = JWTAuth::parseToken()->authenticate()) {
+           return response()->json(['user_not_found'], 404);
+       }
+
+   } catch (Tymon\JWTAuth\Exceptions\TokenExpiredException $e) {
+
+       return response()->json(['token_expired'], $e->getStatusCode());
+
+   } catch (Tymon\JWTAuth\Exceptions\TokenInvalidException $e) {
+
+       return response()->json(['token_invalid'], $e->getStatusCode());
+
+   } catch (Tymon\JWTAuth\Exceptions\JWTException $e) {
+
+       return response()->json(['token_absent'], $e->getStatusCode());
+
+   }
+
+   // the token is valid and we have found the user via the sub claim
+   return response()->json(compact('user'));
+    }
     public function login(Request $request)
     {
         $this->validate($request, [
@@ -25,7 +51,7 @@ class AuthController extends Controller
         try {
             // verify the credentials and create a token for the user
             if (! $token = JWTAuth::attempt($credentials)) {
-                return response()->error('Invalid credentials', 401);
+                return response()->error('Email und/oder Passwort passen irgendwie nicht!', 401);
             }
         } catch (\JWTException $e) {
             return response()->error('Could not create token', 500);
@@ -46,9 +72,13 @@ class AuthController extends Controller
 
         $user = new User;
         $user->name = trim($request->name);
+        $user->display_name = trim($request->name);
         $user->email = trim(strtolower($request->email));
         $user->password = bcrypt($request->password);
         $user->save();
+
+        $userRole = Role::where('name', '=', 'user')->first();
+        $user->attachRole($userRole);
 
         $token = JWTAuth::fromUser($user);
 
@@ -85,7 +115,7 @@ class AuthController extends Controller
         {
             $user = User::where('facebook', '=', $profile['id']);
             if ($user->first())
-            {   
+            {
                 $user = $user->first();
                 $token = JWTAuth::fromUser($user);
 
@@ -96,12 +126,16 @@ class AuthController extends Controller
             //$payload = (array) JWT::decode($token, Config::get('app.token_secret'), array('HS256'));
             //$user = User::find($payload['sub']);
            // $user = JWTAuth::parseToken()->authenticate();
-            $user = new User; 
+            $user = new User;
             $user->name = $profile['name'];
             $user->facebook = $profile['id'];
             $user->email = $profile['email'];
             $user->display_name = $profile['name'];
             $user->save();
+
+            $userRole = Role::where('name', '=', 'user')->first();
+            $user->attachRole($userRole);
+
 
             $token = JWTAuth::fromUser($user);
 
@@ -121,7 +155,12 @@ class AuthController extends Controller
             $user->facebook = $profile['id'];
             $user->email = $profile['email'];
             $user->display_name = $profile['name'];
+            $user->name = $profile['name'];
             $user->save();
+
+            $userRole = Role::where('name', '=', 'user')->first();
+            $user->attachRole($userRole);
+
 
             $token = JWTAuth::fromUser($user);
             return response()->success(compact('user', 'token'));

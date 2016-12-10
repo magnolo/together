@@ -1,4 +1,4 @@
-export function RoutesRun($rootScope, $window, $timeout, $state, $transitions, $auth) {
+export function RoutesRun($rootScope, $window, $timeout, $state, $transitions, $auth, UserService) {
     'ngInject';
 
     let requiresAuthCriteria = {
@@ -13,7 +13,7 @@ export function RoutesRun($rootScope, $window, $timeout, $state, $transitions, $
     };
     let stateChangeStartEvent = $rootScope.$on('$stateChangeStart', () => {
         $rootScope.loadingProgress = true;
-      
+
     });
 
     // De-activate loading indicator
@@ -31,9 +31,10 @@ export function RoutesRun($rootScope, $window, $timeout, $state, $transitions, $
         stateChangeStartEvent();
         stateChangeSuccessEvent();
     });
-    $transitions.onBefore(requiresAuthCriteria, redirectToLogin, { priority: 10 });
     
-    console.log($auth);
-    console.log($auth.getPayload());
-    console.log($window.localStorage.satellizer_token);
+    $transitions.onBefore(requiresAuthCriteria, redirectToLogin, { priority: 10 });
+
+    if($auth.getPayload()){
+      UserService.fetchCurrentUser();
+    }
 }

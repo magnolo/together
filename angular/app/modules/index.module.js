@@ -26,7 +26,8 @@
            'app.calendar',
            'app.locations',
            'app.login',
-           'app.register'
+           'app.register',
+           'app.users'
             // 'app.e-commerce',
             // 'app.mail',
             // 'app.chat',

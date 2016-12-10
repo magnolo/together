@@ -1,6 +1,6 @@
 <div id="register-v2" layout="row" layout-align="start">
     <div id="register-v2-intro" flex hide show-gt-sm>
-        <div class="logo md-accent-bg">
+        <div class="logo">
             <span> <span><img src="/assets/images/logos/tree_small.png" /></span></span>
         </div>
         <div class="title" translate="REGISTER.INTRO_TITLE">
@@ -22,10 +22,10 @@
             <div class="description" translate="REGISTER.DESCRIPTION">Sed mollis velit facilisis facilisis viverra
             </div>
 
-            <form name="registerForm" novalidate>
+            <form name="registerForm" novalidate ng-submit="vm.registerUser(registerForm.$valid)">
                 <md-input-container class="md-block" md-no-float>
                     <input name="username" ng-model="vm.form.username" placeholder="Name"
-                           translate translate-attr-placeholder="REGISTER_V2.NAME"
+                           translate translate-attr-placeholder="REGISTER.NAME"
                            required>
                     <div ng-messages="registerForm.username.$error" role="alert">
                         <div ng-message="required">
@@ -36,7 +36,7 @@
 
                 <md-input-container class="md-block" md-no-float>
                     <input type="email" name="email" ng-model="vm.form.email" placeholder="Email"
-                           translate translate-attr-placeholder="REGISTER_V2.EMAIL"
+                           translate translate-attr-placeholder="REGISTER.EMAIL"
                            ng-pattern="/^.+@.+\..+$/" required>
                     <div ng-messages="registerForm.email.$error" role="alert" multiple>
                         <div ng-message="required">
@@ -89,7 +89,7 @@
 
             <div class="login" layout="row" layout-sm="column" layout-align="center center">
                 <span class="text" translate="REGISTER.ALREADY_HAVE">Already have an account?</span>
-                <a class="link" ui-sref="app.pages_auth_login-v2" translate="REGISTER.LOGIN">Log in</a>
+                <a class="link" ui-sref="app.login" translate="REGISTER.LOGIN">Log in</a>
             </div>
         </div>
     </div>

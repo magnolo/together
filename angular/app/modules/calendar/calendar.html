@@ -16,34 +16,55 @@
 
                 <!-- TOOLBAR -->
                 <div class="toolbar" layout="row" layout-align="start center">
-                    <md-button class="md-icon-button" aria-label="Search" translate
-                               translate-attr-aria-label="CALENDAR.SEARCH">
+                    <md-button class="md-icon-button" aria-label="Search" translate translate-attr-aria-label="CALENDAR.SEARCH">
                         <md-icon md-font-icon="icon-magnify"></md-icon>
-                        <md-tooltip><span translate="CALENDAR.SEARCH">Search</span></md-tooltip>
+                        <md-tooltip>
+                            <span translate="CALENDAR.SEARCH">Search</span>
+                        </md-tooltip>
                     </md-button>
 
-                    <md-button class="md-icon-button" ng-click="vm.calendar.today()" aria-label="Today" translate
-                               translate-attr-aria-label="CALENDAR.TODAY">
+                    <!-- CLEAR FILTERS BUTTON -->
+                    <md-button ng-if="vm.filteringIsOn()" class="md-icon-button" ng-click="vm.clearFilters()" aria-label="Clear Filters" translate translate-attr-aria-label="SB.CLEAR_FILTERS">
+                        <md-icon md-font-icon="icon-filter-remove"></md-icon>
+                        <md-tooltip translate="CALENDAR.CLEAR_FILTERS">Clear Filters</md-tooltip>
+                    </md-button>
+                    <!-- / CLEAR FILTERS BUTTON -->
+
+                    <!-- FILTERS SIDENAV BUTTON -->
+                    <md-button class="md-icon-button" ng-click="vm.toggleSidenav('filters-sidenav')" aria-label="Filter Cards" translate translate-attr-aria-label="SB.FILTER_CARDS">
+                        <md-icon md-font-icon="icon-filter-variant"></md-icon>
+                        <md-tooltip>
+                            <span translate="CALENDAR.FILTER">Filter</span>
+                        </md-tooltip>
+                    </md-button>
+                    <!-- / FILTERS SIDENAV BUTTON -->
+
+                    <md-button class="md-icon-button" ng-click="vm.calendar.today()" aria-label="Today" translate translate-attr-aria-label="CALENDAR.TODAY">
                         <md-icon md-font-icon="icon-calendar-today"></md-icon>
-                        <md-tooltip><span translate="CALENDAR.TODAY">Today</span></md-tooltip>
+                        <md-tooltip>
+                            <span translate="CALENDAR.TODAY">Today</span>
+                        </md-tooltip>
                     </md-button>
 
-                    <md-button class="md-icon-button" ng-click="vm.calendar.changeView('agendaDay')" aria-label="Day"
-                               translate translate-attr-aria-label="CALENDAR.DAY">
+                    <md-button class="md-icon-button" ng-click="vm.calendar.changeView('agendaDay')" aria-label="Day" translate translate-attr-aria-label="CALENDAR.DAY">
                         <md-icon md-font-icon="icon-view-day"></md-icon>
-                        <md-tooltip><span translate="CALENDAR.DAY">Day</span></md-tooltip>
+                        <md-tooltip>
+                            <span translate="CALENDAR.DAY">Day</span>
+                        </md-tooltip>
                     </md-button>
 
-                    <md-button class="md-icon-button" ng-click="vm.calendar.changeView('agendaWeek')" aria-label="Week"
-                               translate translate-attr-aria-label="CALENDAR.WEEK">
+                    <md-button class="md-icon-button" ng-click="vm.calendar.changeView('agendaWeek')" aria-label="Week" translate translate-attr-aria-label="CALENDAR.WEEK">
                         <md-icon md-font-icon="icon-view-week"></md-icon>
-                        <md-tooltip><span translate="CALENDAR.WEEK">Week</span></md-tooltip>
+                        <md-tooltip>
+                            <span translate="CALENDAR.WEEK">Week</span>
+                        </md-tooltip>
                     </md-button>
 
-                    <md-button class="md-icon-button" ng-click="vm.calendar.changeView('month')" aria-label="Month"
-                               translate translate-attr-aria-label="CALENDAR.MONTH">
+                    <md-button class="md-icon-button" ng-click="vm.calendar.changeView('month')" aria-label="Month" translate translate-attr-aria-label="CALENDAR.MONTH">
                         <md-icon md-font-icon="icon-view-module"></md-icon>
-                        <md-tooltip><span translate="CALENDAR.MONTH">Month</span></md-tooltip>
+                        <md-tooltip>
+                            <span translate="CALENDAR.MONTH">Month</span>
+                        </md-tooltip>
                     </md-button>
                 </div>
             </div>
@@ -51,8 +72,7 @@
 
             <!-- HEADER BOTTOM -->
             <div class="header-bottom" layout="row" layout-align="center center">
-                <md-button class="md-icon-button arrow" ng-click="vm.calendar.prev()" aria-label="Previous"
-                           translate translate-attr-aria-label="CALENDAR.PREVIOUS">
+                <md-button class="md-icon-button arrow" ng-click="vm.calendar.prev()" aria-label="Previous" translate translate-attr-aria-label="CALENDAR.PREVIOUS">
                     <md-icon md-font-icon="icon-chevron-left"></md-icon>
                 </md-button>
 
@@ -60,8 +80,7 @@
                     {{vm.calendarView.title}}
                 </div>
 
-                <md-button class="md-icon-button arrow" ng-click="vm.calendar.next()" aria-label="Next" translate
-                           translate-attr-aria-label="CALENDAR.NEXT">
+                <md-button class="md-icon-button arrow" ng-click="vm.calendar.next()" aria-label="Next" translate translate-attr-aria-label="CALENDAR.NEXT">
                     <md-icon md-font-icon="icon-chevron-right"></md-icon>
                 </md-button>
             </div>
@@ -69,8 +88,7 @@
         </div>
 
         <!-- ADD EVENT BUTTON -->
-        <md-button class="add-event-button md-fab md-warn" ng-click="vm.addEvent($event)"
-                   aria-label="Add event" translate translate-attr-aria-label="CALENDAR.ADD_EVENT">
+        <md-button class="add-event-button md-fab md-warn" ng-click="vm.addEvent($event)" aria-label="Add event" translate translate-attr-aria-label="CALENDAR.ADD_EVENT">
             <md-icon md-font-icon="icon-plus"></md-icon>
         </md-button>
         <!-- / ADD EVENT BUTTON -->
@@ -82,5 +100,8 @@
         <div id="calendarView" ui-calendar="vm.calendarUiConfig.calendar" ng-model="vm.events" calendar="main"></div>
     </div>
     <!-- / CONTENT -->
+    <!-- FILTERS SIDENAV -->
+    <md-sidenav class="filters-sidenav md-sidenav-right" md-component-id="filters-sidenav" ng-include="'views/app/modules/calendar/sidenav/filters/filters-sidenav.html'" ng-controller="FiltersSidenavController as vm" ms-sidenav-helper></md-sidenav>
+    <!-- / FILTERS SIDENAV -->
 
 </div>

@@ -19,7 +19,7 @@
                 },
                 'content@app.register': {
                     templateUrl: 'views/app/modules/register/register.html',
-                    controller : 'RegisterV2Controller as vm'
+                    controller : 'RegisterController as vm'
                 }
             },
             bodyClass: 'register-v2'
@@ -28,8 +28,8 @@
         // Translate
         $translatePartialLoaderProvider.addPart('app/modules/register');
 
-     
-       
+
+
     }
 
 })();

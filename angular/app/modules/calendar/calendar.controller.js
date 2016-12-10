@@ -1,7 +1,7 @@
 
 
 /** @ngInject */
-function CalendarController($mdDialog, $document) {
+function CalendarController($mdDialog, $mdSidenav, $document, CalenderFilters) {
     var vm = this;
 
     // Data
@@ -122,6 +122,10 @@ function CalendarController($mdDialog, $document) {
     vm.addEvent = addEvent;
     vm.next = next;
     vm.prev = prev;
+
+    vm.toggleSidenav = toggleSidenav;
+    vm.clearFilters = CalenderFilters.clear;
+    vm.filteringIsOn = CalenderFilters.isOn;
 
     //////////
 
@@ -261,6 +265,17 @@ function CalendarController($mdDialog, $document) {
                     break;
             }
         });
+
+
+    }
+    /**
+     * Toggle sidenav
+     *
+     * @param sidenavId
+     */
+    function toggleSidenav(sidenavId)
+    {
+        $mdSidenav(sidenavId).toggle();
     }
 }
 

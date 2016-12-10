@@ -75,10 +75,10 @@ export function RoutesConfig($stateProvider, $urlRouterProvider) {
                     templateUrl: layouts[layoutStyle].navigation,
                     controller: 'NavigationController as vm'
                 },
-                'quickPanel@app': {
-                    templateUrl: 'views/app/modules/quick-panel/quick-panel.html',
-                    controller: 'QuickPanelController as vm'
-                }
+                // 'quickPanel@app': {
+                //     templateUrl: 'views/app/modules/quick-panel/quick-panel.html',
+                //     controller: 'QuickPanelController as vm'
+                // }
             }
         });
 }

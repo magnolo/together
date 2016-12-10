@@ -28,7 +28,7 @@
                     }
 
                     iElement.parent().toggleClass('full-height', current);
-                    angular.element('html').toggleClass('sidenav-open', current);
+                    angular.element(document).find('html').toggleClass('sidenav-open', current);
                 });
             }
         };

@@ -23,41 +23,43 @@ elixir.config.js.folder = 'angular';
  | file for our application, as well as publishing vendor resources.
  |
  */
-
- let assets = [
-         'public/js/final.js',
-         'public/css/final.css'
-     ],
-     scripts = [
-         'public/js/vendor.js', 'public/js/app.js'
-     ],
-     styles = [
-         // for some reason, ./ prefix here works fine!
-         // it is needed to override elixir.config.css.folder for styles mixin
-         './public/css/vendor.css', './public/css/app.css'
-     ],
-     karmaJsDir = [
-         'public/js/vendor.js',
-         'node_modules/angular-mocks/angular-mocks.js',
-         'node_modules/ng-describe/dist/ng-describe.js',
-         'public/js/app.js',
-         'tests/angular/**/*.spec.js'
-     ];
+let styleIncludes = {
+    material: '/bower_components/angular-material/'
+}
+let assets = [
+        'public/js/final.js',
+        'public/css/final.css'
+    ],
+    scripts = [
+        'public/js/vendor.js', 'public/js/app.js'
+    ],
+    styles = [
+        // for some reason, ./ prefix here works fine!
+        // it is needed to override elixir.config.css.folder for styles mixin
+        './public/css/vendor.css', './public/css/app.css'
+    ],
+    karmaJsDir = [
+        'public/js/vendor.js',
+        'node_modules/angular-mocks/angular-mocks.js',
+        'node_modules/ng-describe/dist/ng-describe.js',
+        'public/js/app.js',
+        'tests/angular/**/*.spec.js'
+    ];
 
 elixir(mix => {
     mix.bower()
         .copy('angular/app/**/*.json', 'public/json/app/')
-       .copy('angular/app/**/*.html', 'public/views/app/')
-       .copy('angular/dialogs/**/*.html', 'public/views/dialogs/')
-       .webpack('index.main.js', 'public/js/app.js')
-       .sass(['**/*.scss', 'critical.scss'], 'public/css')
-       .sass('critical.scss', 'public/css/critical.css')
-       .styles(styles, 'public/css/final.css')
-       .eslint('angular/**/*.js')
-       .combine(scripts, 'public/js/final.js')
-       .version(assets)
-       //.swPrecache();
+        .copy('angular/app/**/*.html', 'public/views/app/')
+        .copy('angular/dialogs/**/*.html', 'public/views/dialogs/')
+        .webpack('index.main.js', 'public/js/app.js')
+        .sass(['**/*.scss', 'critical.scss'], 'public/css')
+        .sass('critical.scss', 'public/css/critical.css')
+        .styles(styles, 'public/css/final.css')
+        .eslint('angular/**/*.js')
+        .combine(scripts, 'public/js/final.js')
+        .version(assets)
+        //.swPrecache();
 
-       //enable front-end tests by adding the below task
-       // .karma({jsDir: karmaJsDir});
+    //enable front-end tests by adding the below task
+    // .karma({jsDir: karmaJsDir});
 });

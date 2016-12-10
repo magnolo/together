@@ -3,6 +3,8 @@ import './core.module';
 
 import './core.directives';
 
+import './core.filters';
+
 import './config/fuse-config.provider';
 
 import './core.config';

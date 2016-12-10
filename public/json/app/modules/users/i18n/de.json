@@ -1,0 +1,31 @@
+{
+    "USERS": {
+        "TITLE": "BENUTZER",
+        "SEARCH_FOR_ANYONE": "Suche nach jemanden...",
+        "BACK": "Zurück",
+        "SELECTED": "Ausgewählt",
+        "MULTI_SELECT_TOGGLE": "Angemeldet bleiben",
+        "SELECT_ALL": "Alle auswählen",
+        "SELECT_NONE": "Auswahl aufheben",
+        "DELETE_SELECTED": "Ausgewählte löschen",
+        "DELETE_USER": "Benutzer löschen",
+        "ALL_USERS": "Alle Benutzer",
+        "FREQUENTLY_CONTACTED": "Kürzlich kontaktierte",
+        "STARRED_USERS": "Favoriten",
+        "TOGGLE_STARRED": "Favoriten umschalten",
+        "EDIT_GROUP_NAME": "Gruppenname ändern",
+        "DELETE_GROUP": "Gruppe löschen",
+        "NO_RESULTS": "Nichts gefunden...",
+        "ADD_USER": "Neuer Benutzer",
+        "SORT": "sortieren",
+        "NAME": "Name",
+        "A_TO_Z": "(A-Z)",
+        "Z_TO_A": "(Z-A)",
+        "MORE": "mehr",
+        "ERRORS": {
+            "EMAIL_REQUIRED": "Ohne Email geht nichts",
+            "EMAIL_MUST_VALID": "Das ist aber keine echte Emailadresse",
+            "PASSWORD_REQUIRED": "Gib mir dein Passwort!"
+        }
+    }
+}

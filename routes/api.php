@@ -13,6 +13,7 @@ use Illuminate\Http\Request;
 |
 */
 
+Route::get('auth/me', 'Auth\AuthController@me');
 Route::post('auth/login', 'Auth\AuthController@login');
 Route::post('auth/register', 'Auth\AuthController@register');
 Route::post('auth/facebook', 'Auth\AuthController@facebook');
@@ -21,8 +22,14 @@ Route::post('auth/password/email', 'Auth\PasswordResetController@sendResetLinkEm
 Route::get('auth/password/verify', 'Auth\PasswordResetController@verify');
 Route::post('auth/password/reset', 'Auth\PasswordResetController@reset');
 
+Route::group(['middleware' => 'auth:api'], function(){
+  Route::group(['middleware' => 'role:admin|superadmin'], function(){
+      Route::get('/users', 'UserController@all');
+  });
 
+  Route::get('/user', function (Request $request) {
+      return $request->user();
+
+  });
+});
 //protected API routes with JWT (must be logged in)
-Route::get('/user', function (Request $request) {
-    return $request->user();
-})->middleware('auth:api');

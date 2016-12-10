@@ -1,0 +1,26 @@
+{
+    "REGISTER": {
+      "INTRO_TITLE": "Come Together APP!",
+      "INTRO_DESCRIPTION": "Hier kommen wir alle zusammen und können unsere Gemeinsamkeiten teilen. Ach immer diese Kommunikationsprobleme. Jezt haben sie ein Ende.",
+      "TITLE": "Account erstellen",
+      "DESCRIPTION": "Kommunikationsprobleme ade!",
+        "NAME": "Name",
+        "EMAIL": "Email",
+        "PASSWORD": "Passwort",
+        "PASSWORD_CONFIRM": "Passwort wiederholen",
+        "READ_ACCEPT": "Ich hab gelesen und akzeptiert",
+        "TERMS_COND": "Bediungungen und Konditionen",
+        "CREATE_ACCOUNT": "ERSTELLE MEINEN ACCOUNT",
+        "ALREADY_HAVE": "Bereits einen Account?",
+        "LOGIN": "Anmelden",
+        "ERRORS": {
+            "USERNAME_REQUIRED": "Username field is required",
+            "EMAIL_REQUIRED": "Email field is required",
+            "EMAIL_MUST_VALID": "Email must be a valid e-mail address",
+            "PASSWORD_REQUIRED": "Password field is required",
+            "PASSWORD_CONFIRM_REQUIRED": "Password confirm field is required",
+            "TERMS_REQUIRED": "You must accept terms and conditions before submitting the form"
+        }
+    }
+
+}

@@ -4,6 +4,8 @@ import './calendar/calendar.main';
 
 import './locations/locations.main';
 
+import './users/users.main';
+
 import './login/login.main';
 
 import './register/register.main';
