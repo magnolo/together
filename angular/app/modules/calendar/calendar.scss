@@ -19,51 +19,51 @@
             z-index: 1;
             background: rgba(0, 0, 0, 0.45);
         }
-        &.Jan {
+        &.M01{
             background-image: url('/assets/images/backgrounds/january.jpg');
             background-position: 0 45%;
         }
-        &.Feb {
+        &.M02 {
             background-image: url('/assets/images/backgrounds/february.jpg');
             background-position: 0 50%;
         }
-        &.Mar {
+        &.M03 {
             background-image: url('/assets/images/backgrounds/march.jpg');
             background-position: 0 45%;
         }
-        &.Apr {
+        &.M04 {
             background-image: url('/assets/images/backgrounds/april.jpg');
             background-position: 0 48%;
         }
-        &.May {
+        &.M05 {
             background-image: url('/assets/images/backgrounds/may.jpg');
             background-position: 0 47%;
         }
-        &.Jun {
+        &.M06 {
             background-image: url('/assets/images/backgrounds/june.jpg');
             background-position: 0 48%;
         }
-        &.Jul {
+        &.M07 {
             background-image: url('/assets/images/backgrounds/july.jpg');
             background-position: 0 3%;
         }
-        &.Aug {
+        &.M08 {
             background-image: url('/assets/images/backgrounds/august.jpg');
             background-position: 0 61%;
         }
-        &.Sep {
+        &.M09 {
             background-image: url('/assets/images/backgrounds/september.jpg');
             background-position: 0 58%;
         }
-        &.Oct {
+        &.M10 {
             background-image: url('/assets/images/backgrounds/october.jpg');
             background-position: 0 50%;
         }
-        &.Nov {
+        &.M11 {
             background-image: url('/assets/images/backgrounds/november.jpg');
             background-position: 0 46%;
         }
-        &.Dec {
+        &.M12 {
             background-image: url('/assets/images/backgrounds/december.jpg');
             background-position: 0 43%;
         }
@@ -110,7 +110,7 @@
                     border: none;
                     color: rgba(0, 0, 0, 0.54);
                     .fc-day-header {
-                        text-align: left;
+                        text-align: right;
                         border: none;
                         font-weight: 500;
                         padding: 5px 8px;
@@ -122,7 +122,7 @@
                     .fc-day-grid-container {
                         .fc-day-grid {
                             .fc-day-number {
-                                text-align: left;
+                                text-align: center;
                                 padding: 8px 8px 0 8px;
                             }
                         }
@@ -140,7 +140,8 @@
                         color: #fff;
                         position:relative;
                         &.fc-state-highlight {
-                            &.fc-day-number {
+                             position:relative;
+                            .fc-day-number {
                                 background: #ff5722;
                                 color: #fff;
                                 display: inline-block;
@@ -316,7 +317,7 @@ Colors: Use the following - https://www.google.com/design/spec/style/color.html#
 /* Remove that awful yellow color and border from today in Schedule */
 
 .fc-today {
-    opacity: 0;
+    background-color:transparent !important;
     border: none;
 }
 
@@ -351,7 +352,12 @@ Colors: Use the following - https://www.google.com/design/spec/style/color.html#
     vertical-align: top !important;
 }
 
-
+.fc-list-view{
+    .fc td,
+    .fc th{
+            border-width: 0px !important;
+    }
+}
 /* Inherits background for each event from Schedule. */
 
 .fc-event .fc-bg {

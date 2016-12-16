@@ -1,7 +1,7 @@
 
 
 /** @ngInject */
-function CalendarController($mdDialog, $mdSidenav, $document, locationService, CalenderFilters) {
+function CalendarController($mdDialog, $mdSidenav, $document, LocationService, CalenderFilters) {
     var vm = this;
 
     // Data
@@ -110,6 +110,7 @@ function CalendarController($mdDialog, $mdSidenav, $document, locationService, C
     vm.calendarUiConfig = {
         calendar: {
             locale: 'de',
+            lang: 'de',
             // weekNumbers:true,
             editable: true,
             eventLimit: true,
@@ -122,13 +123,13 @@ function CalendarController($mdDialog, $mdSidenav, $document, locationService, C
             viewRender: function (view) {
                 vm.calendarView = view;
                 vm.calendar = vm.calendarView.calendar;
-                vm.currentMonthShort = vm.calendar.getDate().format('MMM');
+                vm.currentMonthShort = 'M'+vm.calendar.getDate().format('MM');
             },
-            columnFormat: {
-                month: 'ddd',
-                week: 'ddd D',
-                day: 'ddd M'
-            },
+            // columnFormat: {
+            //     month: 'ddd',
+            //     week: 'ddd D',
+            //     day: 'ddd M'
+            // },
             timeFormat: 'H:mm',
             eventRender: (event, element) => {
                 if (event.location) {
@@ -155,22 +156,23 @@ function CalendarController($mdDialog, $mdSidenav, $document, locationService, C
     vm.addEvent = addEvent;
     vm.next = next;
     vm.prev = prev;
-    
+
     vm.toggleSidenav = toggleSidenav;
     vm.clearFilters = CalenderFilters.clear;
     vm.filteringIsOn = CalenderFilters.isOn;
-    
-    
+
+
     vm.sidenav = {
         sidenav: false,
         'filters-sidenav': false
     };
 
+    activate();
     //////////
-    function activate(){
-    locationService.all().then((data) => {
-        vm.locations = data
-    })
+    function activate() {
+        LocationService.all().then((data) => {
+            vm.locations = data
+        })
     }
 
     /**
@@ -318,7 +320,7 @@ function CalendarController($mdDialog, $mdSidenav, $document, locationService, C
      * @param sidenavId
      */
     function toggleSidenav(sidenavId) {
-        vm.sidenav[sidenavId]  = !vm.sidenav[sidenavId];
+        vm.sidenav[sidenavId] = !vm.sidenav[sidenavId];
         $mdSidenav(sidenavId).toggle();
     }
 }

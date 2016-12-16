@@ -1,9 +1,10 @@
 <div id="calendar" class="page-layout simple left-sidenav" layout="row">
-    <md-sidenav md-disable-backdrop class="sidenav" md-is-locked-open="vm.sidenav.sidenav" md-component-id="sidenav" ms-scroll ms-sidenav-helper>
+    <md-sidenav md-disable-backdrop class="sidenav" md-is-locked-open="vm.sidenav.sidenav" md-component-id="sidenav" ms-scroll
+        ms-sidenav-helper>
 
-        
+
         <div ng-include="'views/app/modules/calendar/sidenav/list/list-sidenav.html'"></div>
-       
+
 
     </md-sidenav>
     <div class="center" flex ms-scroll>
@@ -54,6 +55,13 @@
                             <md-icon md-font-icon="icon-calendar-today"></md-icon>
                             <md-tooltip>
                                 <span translate="CALENDAR.TODAY">Today</span>
+                            </md-tooltip>
+                        </md-button>
+
+                        <md-button class="md-icon-button" ng-click="vm.calendar.changeView('listWeek')" aria-label="Day" translate translate-attr-aria-label="CALENDAR.DAY">
+                            <md-icon md-font-icon="icon-view-day"></md-icon>
+                            <md-tooltip>
+                                <span translate="CALENDAR.LISTVIEW">List</span>
                             </md-tooltip>
                         </md-button>
 
