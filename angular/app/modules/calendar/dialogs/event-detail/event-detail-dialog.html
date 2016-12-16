@@ -18,7 +18,7 @@
             <div class="event-detail-row" layout="row" layout-align="start start">
                 <md-icon md-font-icon="icon-clock"></md-icon>
                 <div layout="column" flex>
-                    <span class="h4">{{vm.calendarEvent.start.format('MMMM Do YYYY, h:mm:ss a')}} <span
+                    <span class="h4">{{vm.calendarEvent.start.format('DD. MMMM  YYYY, HH:mm')}} <span
                             ng-if="vm.calendarEvent.end">-</span> {{vm.calendarEvent.end.format('MMMM Do YYYY, h:mm:ss a')}}</span>
                     <span class="secondary-text">{{vm.calendarEvent.repeat || 'Does not repeat'}}</span>
                 </div>

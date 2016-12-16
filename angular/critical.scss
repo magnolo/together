@@ -5,7 +5,7 @@
     left: 0;
     right: 0;
     bottom: 0;
-    background-color: #3C4252;
+    background-color: #fff;
     z-index: 99999;
 
     &.ng-leave {
@@ -33,36 +33,38 @@
         font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
         font-size: 56px;
         text-align: center;
-        border-radius: 2px;
-        background-color: #039BE5;
-        color: #FFFFFF;
+        border-radius: 50%;
+        background-color:#558C39;
+        color: #fff;
         box-shadow: 0 2px 14px 0 rgba(0, 0, 0, 0.22);
+
     }
 
     .spinner-wrapper {
         display: block;
-        position: relative;
+        position: absolute;
+        top:-62px;
         width: 100%;
-        min-height: 100px;
-        height: 100px;
-
+        min-height: 220px;
+        height: 220px;
+        z-index:-1;
         .spinner {
             position: absolute;
             overflow: hidden;
             left: 50%;
-            margin-left: -50px;
+            margin-left: -110px;
             animation: outer-rotate 2.91667s linear infinite;
 
             .inner {
-                width: 100px;
-                height: 100px;
+                width: 220px;
+                height: 220px;
                 position: relative;
                 animation: sporadic-rotate 5.25s cubic-bezier(0.35, 0, 0.25, 1) infinite;
 
                 .gap {
                     position: absolute;
-                    left: 49px;
-                    right: 49px;
+                    left: 119px;
+                    right: 119px;
                     top: 0;
                     bottom: 0;
                     border-top: 10px solid;
@@ -73,17 +75,17 @@
                 .right {
                     position: absolute;
                     top: 0;
-                    height: 100px;
-                    width: 50px;
+                    height: 220px;
+                    width: 110px;
                     overflow: hidden;
 
                     .half-circle {
                         position: absolute;
                         top: 0;
-                        width: 100px;
-                        height: 100px;
+                        width: 220px;
+                        height: 220px;
                         box-sizing: border-box;
-                        border: 10px solid #4285F4;
+                        border: 11px solid #558C39;
                         border-bottom-color: transparent;
                         border-radius: 50%;
                     }

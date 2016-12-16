@@ -1,7 +1,7 @@
 
 
 /** @ngInject */
-function CalendarController($mdDialog, $mdSidenav, $document, CalenderFilters) {
+function CalendarController($mdDialog, $mdSidenav, $document, locationService, CalenderFilters) {
     var vm = this;
 
     // Data
@@ -15,93 +15,111 @@ function CalendarController($mdDialog, $mdSidenav, $document, CalenderFilters) {
             id: 1,
             title: 'All Day Event',
             start: new Date(y, m, 1),
-            end: null
+            end: null,
+            location: 'Lorenz',
+            backgroundColor: 'green',
+            borderColor: 'black'
         }, {
             id: 2,
             title: 'Long Event',
             start: new Date(y, m, d - 5),
+            location: 'Lorenz',
             end: new Date(y, m, d - 2)
         }, {
             id: 3,
             title: 'Some Event',
             start: new Date(y, m, d - 3, 16, 0),
+            location: 'Lorenz',
             end: null
         }, {
             id: 4,
             title: 'Repeating Event',
             start: new Date(y, m, d + 4, 16, 0),
+            location: 'Lorenz',
             end: null
         }, {
             id: 5,
             title: 'Birthday Party',
+            location: 'Lorenz',
             start: new Date(y, m, d + 1, 19, 0),
             end: new Date(y, m, d + 1, 22, 30)
         }, {
             id: 6,
             title: 'All Day Event',
+            location: 'Lorenz',
             start: new Date(y, m, d + 8, 16, 0),
-            end: null
+            end: null,
+            allDay: true
         }, {
             id: 7,
             title: 'Long Event',
+            location: 'Lorenz',
             start: new Date(y, m, d + 12, 16, 0),
             end: null
         }, {
             id: 8,
             title: 'Repeating Event',
             start: new Date(y, m, d + 14, 2, 0),
+            location: 'Lorenz',
             end: null
         }, {
             id: 9,
             title: 'Repeating Event',
             start: new Date(y, m, d + 14, 4, 0),
+            location: 'Lorenz',
             end: null
         }, {
             id: 10,
             title: 'Repeating Event',
             start: new Date(y, m, d + 14, 2, 0),
+            location: 'Lorenz',
             end: null
         }, {
             id: 11,
             title: 'Repeating Event',
             start: new Date(y, m, d + 14, 4, 0),
+            location: 'Lorenz',
             end: null
         }, {
             id: 12,
             title: 'Repeating Event',
             start: new Date(y, m, d + 14, 2, 0),
+            location: 'Lorenz',
             end: null
         }, {
             id: 13,
             title: 'Repeating Event',
             start: new Date(y, m, d + 14, 4, 0),
+            location: 'Lorenz',
             end: null
         }, {
             id: 14,
             title: 'Conference',
             start: new Date(y, m, d + 17, 4, 0),
+            location: 'Lorenz',
             end: null
         }, {
             id: 15,
             title: 'Meeting',
             start: new Date(y, m, d + 22, 4, 0),
+            location: 'Lorenz',
             end: new Date(y, m, d + 24, 4, 0)
         }]
     ];
 
     vm.calendarUiConfig = {
         calendar: {
-            locale:'de',
-            weekNumbers:true,
+            locale: 'de',
+            // weekNumbers:true,
             editable: true,
             eventLimit: true,
             header: '',
-            handleWindowResize: false,
-            firstDay:1,
+            handleWindowResize: true,
+            firstDay: 1,
             aspectRatio: 1,
             dayNames: ['Sonntag', 'Montag', 'Dienstag', 'Mittwoch', 'Donnerstag', 'Freitag', 'Samstag'],
             dayNamesShort: ['So', 'Mo', 'Di', 'Mi', 'Do', 'Fr', 'Sa'],
-            viewRender: function(view) {
+            viewRender: function (view) {
                 vm.calendarView = view;
                 vm.calendar = vm.calendarView.calendar;
                 vm.currentMonthShort = vm.calendar.getDate().format('MMM');
@@ -110,6 +128,21 @@ function CalendarController($mdDialog, $mdSidenav, $document, CalenderFilters) {
                 month: 'ddd',
                 week: 'ddd D',
                 day: 'ddd M'
+            },
+            timeFormat: 'H:mm',
+            eventRender: (event, element) => {
+                if (event.location) {
+                    element.find('div.fc-content').append('<span class="fc-location">' + event.location + '</span>');
+                }
+
+            },
+            views: {
+                agenda: {
+                    minTime: '08:00:00',
+                    maxTime: '22:00:00',
+                    allDayText: 'ganztags',
+                    slotLabelFormat: 'H:mm'
+                }
             },
             eventClick: eventDetail,
             selectable: true,
@@ -122,12 +155,23 @@ function CalendarController($mdDialog, $mdSidenav, $document, CalenderFilters) {
     vm.addEvent = addEvent;
     vm.next = next;
     vm.prev = prev;
-
+    
     vm.toggleSidenav = toggleSidenav;
     vm.clearFilters = CalenderFilters.clear;
     vm.filteringIsOn = CalenderFilters.isOn;
+    
+    
+    vm.sidenav = {
+        sidenav: false,
+        'filters-sidenav': false
+    };
 
     //////////
+    function activate(){
+    locationService.all().then((data) => {
+        vm.locations = data
+    })
+    }
 
     /**
      * Go to next on current view (week, month etc.)
@@ -224,7 +268,7 @@ function CalendarController($mdDialog, $mdSidenav, $document, CalenderFilters) {
             locals: {
                 dialogData: dialogData
             }
-        }).then(function(response) {
+        }).then(function (response) {
             switch (response.type) {
                 case 'add':
                     // Add new
@@ -273,8 +317,8 @@ function CalendarController($mdDialog, $mdSidenav, $document, CalenderFilters) {
      *
      * @param sidenavId
      */
-    function toggleSidenav(sidenavId)
-    {
+    function toggleSidenav(sidenavId) {
+        vm.sidenav[sidenavId]  = !vm.sidenav[sidenavId];
         $mdSidenav(sidenavId).toggle();
     }
 }
