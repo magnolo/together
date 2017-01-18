@@ -29,7 +29,15 @@
          */
         function editEvent(calendarEvent)
         {
-            showEventFormDialog('edit', calendarEvent, false, false, event);
+            let data;
+            if(typeof calendarEvent.plain != "undefined"){
+              data = calendarEvent.plain();
+            }
+            else{
+              data = calendarEvent;
+            }
+
+            showEventFormDialog('edit', data, false, false, event);
         }
     }
 

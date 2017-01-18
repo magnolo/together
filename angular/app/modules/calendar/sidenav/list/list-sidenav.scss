@@ -1,4 +1,14 @@
 .list-sidenav{
     width:198px;
     min-width:198px;
+    .iconed{
+      md-list-item{
+        p{
+          i{
+            font-size: 14px;
+            margin-right:4px;
+          }
+        }
+      }
+    }
 }

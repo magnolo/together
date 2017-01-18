@@ -1,14 +1,28 @@
-<div class="list-sidenav">
+<div class="list-sidenav ">
+  <md-content>
+    <section>
+    <md-subheader class="md-no-sticky">Locations</md-subheader>
     <md-list>
-        <md-subheader class="md-no-sticky">Locations</md-subheader>
 
-        <md-list-item ng-repeat="location in vm.locations">
+
+        <md-list-item ng-repeat="location in vm.locations" ng-model="vm.locationss" data-drag="true" jqyoui-draggable="{index: {{$index}}, animate: false, placeholder: 'keep'}" data-jqyoui-options="{helper: 'clone', appendTo:'body'}">
             <p>{{ location.display_name }}</p>
         </md-list-item>
-
         <md-divider></md-divider>
 
-        
+    </md-list>
+  </section>
+  <section>
+        <md-subheader class="md-no-sticky">Arten</md-subheader>
+    <md-list class="iconed">
+
+
+        <md-list-item ng-repeat="type in vm.eventTypes"  ng-model="vm.eventTypes" data-drag="true" jqyoui-draggable="{index: {{$index}}, animate: false, placeholder: 'keep'}" data-jqyoui-options="{helper: 'clone', appendTo:'body'}">
+            <p layout="row" layout-align="start center"><span><i class="icon {{type.icon}}"></i></span>{{ type.name }}</p>
+        </md-list-item>
+        <md-divider></md-divider>
 
     </md-list>
+  </section>
+</md-content>
 </div>

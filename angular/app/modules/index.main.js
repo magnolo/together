@@ -17,3 +17,5 @@ import './toolbar/toolbar.main';
 import './quick-panel/quick-panel.main';
 
 import './index.module';
+
+//import './index.run';

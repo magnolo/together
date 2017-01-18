@@ -40,7 +40,9 @@
     "Sortable": "1.4.2",
     "angular-i18n": "^1.5.9",
     "angular-dynamic-locale": "^0.1.32",
-    "fullcalendar": "^3.1.0"
+    "fullcalendar": "^3.1.0",
+    "angular-dragdrop": "^1.0.13",
+    "mdPickers": "^0.7.5"
   },
   "overrides": {
     "angular-material": {

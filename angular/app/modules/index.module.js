@@ -8,7 +8,7 @@
             // 'uiGmapgoogle-maps',
             // 'textAngular',
             // 'xeditable',
-
+            'ui.router',
             // Core
             'app.core',
 

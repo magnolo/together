@@ -15,15 +15,30 @@ class LocationSeeder extends Seeder
     public function run()
     {
         //
-        $locationType = new LocationType;
+        //
+        $locationType = new LocationType();
 
         $locationType->name = "Point";
         $locationType->save();
 
-        $location = new Location;
+        $location = new Location();
         $location->name = "Point Villach";
         $location->display_name = "Point Villach";
         $location->address = "Lederergasse, 9500 Villach";
+        $location->color = "green";
+        $location->type_id = $locationType->id;
+        $location->save();
+
+        $locationType = new LocationType();
+
+        $locationType->name = "Wohnprojekt";
+        $locationType->save();
+
+        $location = new Location();
+        $location->name = "Lorenz";
+        $location->display_name = "Lorenz";
+        $location->address = "Denkmalweg 7, 9581 Ledenitzen";
+        $location->color = "red";
         $location->type_id = $locationType->id;
         $location->save();
     }

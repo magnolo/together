@@ -1,18 +1,22 @@
 
 
     /** @ngInject */
-    function EventFormDialogController($mdDialog, dialogData)
+    function EventFormDialogController($mdDialog, dialogData, locations, eventTypes)
     {
         var vm = this;
 
         // Data
         vm.dialogData = dialogData;
+        vm.locations = locations;
+        vm.eventTypes = eventTypes;
         vm.notifications = ['15 minutes before', '30 minutes before', '1 hour before'];
 
         // Methods
         vm.saveEvent = saveEvent;
         vm.removeEvent = removeEvent;
         vm.closeDialog = closeDialog;
+        vm.setLocation = setLocation;
+        vm.setType = setType;
 
         init();
 
@@ -23,6 +27,8 @@
          */
         function init()
         {
+
+
             // Figure out the title
             switch ( vm.dialogData.type )
             {
@@ -50,11 +56,19 @@
                 {
                     vm.calendarEvent.start = vm.calendarEvent.start.toDate();
                 }
+                else{
+                    vm.calendarEvent.start = moment(vm.calendarEvent.start).toDate();
+                }
 
                 if ( moment.isMoment(vm.calendarEvent.end) )
                 {
                     vm.calendarEvent.end = vm.calendarEvent.end.toDate();
                 }
+                else{
+                  vm.calendarEvent.end = moment(vm.calendarEvent.end).toDate();
+                }
+
+                console.log(vm.calendarEvent)
             }
             // Add
             else
@@ -73,8 +87,13 @@
                 vm.calendarEvent = {
                     start        : vm.dialogData.start,
                     end          : vm.dialogData.end,
-                    notifications: []
+                    allDay       : vm.dialogData.allDay,
+                    location_id  : vm.dialogData.location_id,
+                    type_id      : vm.dialogData.type_id,
+                    public       : true
                 };
+
+
             }
         }
 
@@ -88,6 +107,8 @@
                 start: moment.utc(vm.calendarEvent.start),
                 end  : moment.utc(vm.calendarEvent.end)
             };
+            vm.calendarEvent.start_at = moment(vm.calendarEvent.start).format('YYYY-MM-DD HH:mm:ss');
+            vm.calendarEvent.end_at = moment(vm.calendarEvent.end).format('YYYY-MM-DD HH:mm:ss');
 
             var response = {
                 type         : vm.dialogData.type,
@@ -116,6 +137,23 @@
         function closeDialog()
         {
             $mdDialog.cancel();
+        }
+
+
+        function setLocation(){
+          angular.forEach(vm.locations, (loc) => {
+            if(loc.id == vm.calendarEvent.location_id){
+              vm.calendarEvent.location = loc;
+            }
+          })
+        }
+        function setType(){
+
+          angular.forEach(vm.eventTypes, (ty) => {
+            if(ty.id == vm.calendarEvent.type_id){
+              vm.calendarEvent.type = ty;
+            }
+          })
         }
     }
 

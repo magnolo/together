@@ -22,14 +22,20 @@ Route::post('auth/password/email', 'Auth\PasswordResetController@sendResetLinkEm
 Route::get('auth/password/verify', 'Auth\PasswordResetController@verify');
 Route::post('auth/password/reset', 'Auth\PasswordResetController@reset');
 
+Route::get('/events/types', 'EventController@getTypes');
+Route::get('/events', 'EventController@get');
+
 Route::group(['middleware' => 'auth:api'], function(){
 
   Route::group(['middleware' => 'role:admin|superadmin'], function(){
       Route::get('/users', 'UserController@all');
   });
 
-
+  Route::put('/events/{id}', 'EventController@update');
+  Route::post('/events', 'EventController@create');
+  Route::delete('/events/{id}', 'EventController@remove');
   Route::get('/locations', 'LocationController@all');
+
   Route::get('/user', function (Request $request) {
       return $request->user();
 

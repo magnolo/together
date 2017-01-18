@@ -4,7 +4,9 @@
         .module('app.calendar',
             [
                 // 3rd Party Dependencies
-                'ui.calendar'
+                'ui.calendar',
+                'ngDragDrop',
+                 'mdPickers'
             ]
         )
         .config(config);
@@ -30,8 +32,14 @@
         // Translation
         $translatePartialLoaderProvider.addPart('app/modules/calendar');
 
+
+        msNavigationServiceProvider.saveItem('events', {
+            title : 'Events',
+            group: true,
+            weight: 0
+        });
         // Navigation
-        msNavigationServiceProvider.saveItem('calendar', {
+        msNavigationServiceProvider.saveItem('events.calendar', {
             title : 'Calendar',
             icon  : 'icon-calendar-today',
             state : 'app.calendar',

@@ -16,7 +16,7 @@
                 <div class="header-top" layout="row" layout-align="space-between center" layout-xs="column">
                     <div class="logo" layout="row" layout-align="start center">
                         <md-button class="md-icon-button sidenav-toggle" ng-click="vm.toggleSidenav('sidenav')" aria-label="Toggle sidenav">
-                            <md-icon md-font-icon="list" class="icon"></md-icon>
+                            <md-icon class="icon" md-font-icon="icon-format-list-bulleted"></md-icon>
                         </md-button>
                         <span class="logo-icon">
                         <md-icon md-font-icon="icon-calendar-today"></md-icon>
@@ -27,12 +27,12 @@
 
                     <!-- TOOLBAR -->
                     <div class="toolbar" layout="row" layout-align="start center">
-                        <md-button class="md-icon-button" aria-label="Search" translate translate-attr-aria-label="CALENDAR.SEARCH">
+                        <!-- <md-button class="md-icon-button" aria-label="Search" translate translate-attr-aria-label="CALENDAR.SEARCH">
                             <md-icon md-font-icon="icon-magnify"></md-icon>
                             <md-tooltip>
                                 <span translate="CALENDAR.SEARCH">Search</span>
                             </md-tooltip>
-                        </md-button>
+                        </md-button> -->
 
                         <!-- CLEAR FILTERS BUTTON -->
                         <md-button ng-if="vm.filteringIsOn()" class="md-icon-button" ng-click="vm.clearFilters()" aria-label="Clear Filters" translate
@@ -59,7 +59,7 @@
                         </md-button>
 
                         <md-button class="md-icon-button" ng-click="vm.calendar.changeView('listWeek')" aria-label="Day" translate translate-attr-aria-label="CALENDAR.DAY">
-                            <md-icon md-font-icon="icon-view-day"></md-icon>
+                            <md-icon md-font-icon="icon-format-list-bulleted"></md-icon>
                             <md-tooltip>
                                 <span translate="CALENDAR.LISTVIEW">List</span>
                             </md-tooltip>
@@ -116,7 +116,7 @@
 
         <!-- CONTENT -->
         <div class="content">
-            <div id="calendarView" infinite-calendar="vm.calendarView" ui-calendar="vm.calendarUiConfig.calendar" ng-model="vm.events"
+            <div id="calendarView"  ui-calendar="vm.calendarUiConfig.calendar" ng-model="vm.events"
                 calendar="main"></div>
         </div>
         <!-- / CONTENT -->

@@ -29,7 +29,7 @@
             title : 'Benutzer',
             icon  : 'icon-account-box',
             state : 'app.users',
-            weight: 1
+            weight: 0
         });
 
     }

@@ -57,7 +57,7 @@ elixir(mix => {
         .styles(styles, 'public/css/final.css')
         .eslint('angular/**/*.js')
         .combine(scripts, 'public/js/final.js')
-        .version(assets)
+        //.version(assets)
         //.swPrecache();
 
     //enable front-end tests by adding the below task

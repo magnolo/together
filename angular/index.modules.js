@@ -1,6 +1,6 @@
 angular.module('app', [
   'fuse',
- 
+
     'app.run',
 	'app.filters',
 	'app.services',

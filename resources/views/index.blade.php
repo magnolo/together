@@ -4,7 +4,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>Laravel Angular Material Starter</title>
+    <title>Stay Together</title>
 
     <meta name="theme-color" content="#0690B7">
 
@@ -20,7 +20,7 @@
 <body md-theme="@{{vm.themes.active.name}}" md-theme-watch ng-controller="IndexController as vm"
           class="@{{state.current.bodyClass || ''}}">
 
-    
+
         <ms-splash-screen id="splash-screen">
             <div class="center">
                 <div class="logo">
@@ -43,7 +43,7 @@
                 <!-- / Material Design Spinner -->
             </div>
         </ms-splash-screen>
-  
+
 
 
     <app-root></app-root>
@@ -52,14 +52,16 @@
     <script>
     (function(){
         var link = document.createElement("link");
-        link.href = "{!! elixir('css/final.css') !!}";
+        // link.href = "{!! elixir('css/final.css') !!}";
+        link.href = "css/final.css";
         link.type = "text/css";
         link.rel = "stylesheet";
         document.body.appendChild(link);
     })();
     </script>
 
-    <script src="{!! elixir('js/final.js') !!}" async></script>
+    <!-- <script src="{!! elixir('js/final.js') !!}" async></script> -->
+    <script src="js/final.js" async></script>
 
 </body>
 </html>

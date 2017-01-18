@@ -422,3 +422,23 @@ table {
         }
     }
 }
+
+
+md-dialog.mdp-timepicker, md-dialog.mdp-datepicker{
+  md-dialog-content{
+    padding:0px;
+    .mdp-calendar-monthyear, .mdp-calendar-monthyear{
+      font-size:1em;
+    }
+    .md-button.md-icon-button{
+      margin:0px;
+    }
+    .md-button.md-tealTheme-theme.md-raised{
+      &:not(.md-accent){
+          background:transparent;
+      }
+
+    }
+  }
+
+}

@@ -21,6 +21,7 @@ class CreateLocationsTable extends Migration
             $table->string('description')->nullable();
             $table->string('address')->nullable();
             $table->string('color')->nullable();
+            $table->string('icon')->nullable();
             $table->integer('image')->nullable();
             $table->integer('type_id');
             $table->timestamps();

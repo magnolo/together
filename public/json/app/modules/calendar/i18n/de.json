@@ -20,9 +20,11 @@
         "END_TIME": "End Zeit",
         "REPEAT": "Wiederholen",
         "LOCATION": "Ort",
+        "TYPE": "Typ",
+        "PUBLIC": "Öffentlich",
         "NOTIFICATIONS": "Benachrichtigung",
         "ADD_NOTIFICATION": "+ weitere Benachrichtigung",
-        "NOTES": "Notiz",
+        "NOTES": "Beschreibung",
         "SAVE": "SPEICHERN",
         "DELETE": "Löschen",
         "30_MIN_BEFORE": "30 Minuten früher",
@@ -30,6 +32,12 @@
         "30_MIN_LATER": "30 Minuten später",
         "ERRORS": {
             "TITLE_REQUIRED": "Titel ist Pflichtfeld"
-        }
+        },
+        "FILTER_EVENTS":"Events filtern",
+        "CLEAR_FILTER":"Filter löschen",
+        "FILTER_BY_NAME":"per Name",
+        "FIELD_NAME":"Titel/Name...",
+        "FILTER_BY_LOCATION":"per Location",
+        "FILTER_BY_TYPE":"per Typ"
     }
 }
