@@ -1,5 +1,3 @@
-
-
 import './locations.module';
 
 

@@ -14,3 +14,4 @@
 Route::get('/', 'AngularController@serveApp');
 
 Route::get('/unsupported-browser', 'AngularController@unsupported');
+Route::get('/images/{path}/{file}', 'MediaController@getImage');

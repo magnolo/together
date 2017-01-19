@@ -1,17 +1,17 @@
 export function SatellizerConfig($authProvider) {
-	'ngInject';
+    'ngInject';
 
-	$authProvider.httpInterceptor = function() {
-		return true;
-	}
+    $authProvider.httpInterceptor = function() {
+        return true;
+    }
 
-	$authProvider.facebook({
-      clientId: '1700523083594884',
-	  url: '/api/auth/facebook',
+    $authProvider.facebook({
+        clientId: '1700523083594884',
+        url: '/api/auth/facebook'
     });
 
-	$authProvider.loginUrl = '/api/auth/login';
-	$authProvider.signupUrl = '/api/auth/register';
-	$authProvider.tokenRoot = 'data';//compensates success response macro
+    $authProvider.loginUrl = '/api/auth/login';
+    $authProvider.signupUrl = '/api/auth/register';
+    $authProvider.tokenRoot = 'data'; //compensates success response macro
 
 }

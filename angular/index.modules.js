@@ -1,14 +1,14 @@
 angular.module('app', [
-  'fuse',
+    'fuse',
 
     'app.run',
-	'app.filters',
-	'app.services',
-	'app.components',
+    'app.filters',
+    'app.services',
+    'app.components',
     'app.directives',
-	'app.routes',
-	'app.config',
-	'app.controllers'
+    'app.routes',
+    'app.config',
+    'app.controllers'
 ]);
 
 angular.module('app.run', []);
@@ -19,6 +19,7 @@ angular.module('app.config', []);
 angular.module('app.directives', []);
 angular.module('app.controllers', []);
 angular.module('app.components', [
-	'ui.router', 'ngMaterial', 'angular-loading-bar',
-	'restangular', 'ngStorage', 'satellizer', 'tmh.dynamicLocale'
+    'ui.router', 'ngMaterial', 'angular-loading-bar',
+    'restangular', 'ngStorage', 'satellizer', 'tmh.dynamicLocale',
+    'textAngular', 'xeditable',
 ]);

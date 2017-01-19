@@ -26,8 +26,10 @@ class LocationSeeder extends Seeder
         $location->display_name = "Point Villach";
         $location->address = "Lederergasse, 9500 Villach";
         $location->color = "green";
-        $location->type_id = $locationType->id;
         $location->save();
+
+        $location->types()->attach($locationType);
+
 
         $locationType = new LocationType();
 
@@ -39,7 +41,8 @@ class LocationSeeder extends Seeder
         $location->display_name = "Lorenz";
         $location->address = "Denkmalweg 7, 9581 Ledenitzen";
         $location->color = "red";
-        $location->type_id = $locationType->id;
         $location->save();
+
+        $location->types()->attach($locationType);
     }
 }

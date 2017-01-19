@@ -24,21 +24,30 @@ Route::post('auth/password/reset', 'Auth\PasswordResetController@reset');
 
 Route::get('/events/types', 'EventController@getTypes');
 Route::get('/events', 'EventController@get');
+Route::get('/locations', 'LocationController@all');
+Route::get('/locations/types', 'LocationController@getTypes');
+Route::get('/locations/{id}', 'LocationController@get');
+Route::post('/locations/{id}/images', 'MediaController@uploadImage');
+
+
+
+
 
 Route::group(['middleware' => 'auth:api'], function(){
 
-  Route::group(['middleware' => 'role:admin|superadmin'], function(){
+ Route::group(['middleware' => 'role:admin|superadmin'], function(){
       Route::get('/users', 'UserController@all');
   });
 
   Route::put('/events/{id}', 'EventController@update');
   Route::post('/events', 'EventController@create');
   Route::delete('/events/{id}', 'EventController@remove');
-  Route::get('/locations', 'LocationController@all');
+
 
   Route::get('/user', function (Request $request) {
       return $request->user();
-
   });
+
+
 });
 //protected API routes with JWT (must be logged in)
